@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maze-worker-deployment
+  labels:
+    app: maze-worker
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: maze-worker
+  template:
+    metadata:
+      labels:
+        app: maze-worker
+    spec:
+      containers:
+      - name: maze-worker
+        image: tsmsap/mazegen-worker:0.0.4
+        imagePullPolicy: Always
+        env:
+        - name: REDIS_ADDR
+          value: "redis-service:6379"
+        ports:
+        - containerPort: 8081
+        volumeMounts:
+          - name: host-mount
+            #Directory on the Pod (container sandbox)
+            mountPath: "/workers"
+      volumes:
+        - name: host-mount
+          hostPath:
+            #Directory on the Node
+            path: "/mnt/mazepv"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: worker-service
+spec:
+  selector:
+    app: maze-worker
+  ports:
+  - protocol: TCP
+    port: 8081
+    targetPort: 8081

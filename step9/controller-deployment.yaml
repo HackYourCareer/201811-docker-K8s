@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maze-controller-deployment
+  labels:
+    app: maze-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: maze-controller
+  template:
+    metadata:
+      labels:
+        app: maze-controller
+    spec:
+      containers:
+      - name: maze-controller
+        image: tsmsap/mazegen-controller:0.0.1
+        env:
+        - name: WORKER_HOST
+          value: TODO:8081
+        - name: REDIS_ADDR
+          value: ""
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+          - name: host-mount
+            #Directory on the Pod (container sandbox)
+            mountPath: "/workers"
+      volumes:
+        - name: host-mount
+          hostPath:
+            #Directory on the Node
+            path: "/mnt/mazepv"

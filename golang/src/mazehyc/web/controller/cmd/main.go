@@ -1,3 +1,7 @@
+/*
+* Don't use in production...
+ */
+
 package main
 
 import (
