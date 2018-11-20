@@ -4,7 +4,7 @@ set -e
 
 TAG=0.0.4
 pushd step2
-env GOOS=linux ./build.sh
+#env GOOS=linux ./build.sh
 docker build -t tomek:latest .
 popd
 
