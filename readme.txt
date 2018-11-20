@@ -1,8 +1,9 @@
-To compile worker/controller:
+### To compile worker/controller:
+
 go get -u github.com/go-redis/redis
 go get -u github.com/twinj/uuid
 
-to change something:
+### To change something:
 - make changes in code
 - rebuild with increased tag
 - publish with increased tag
