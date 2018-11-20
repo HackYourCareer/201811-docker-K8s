@@ -3,7 +3,6 @@
 
 source ../golang/setup.source.me
 
-./build.sh
 file maze
 
 docker build -t tomek:latest .
