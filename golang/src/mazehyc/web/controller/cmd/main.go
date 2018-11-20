@@ -18,14 +18,6 @@ import (
 	"github.com/twinj/uuid"
 )
 
-func firstValue(vals []string) string {
-	if len(vals) == 0 {
-		return ""
-	}
-
-	return vals[0]
-}
-
 func main() {
 
 	port := os.Getenv("PORT") // port string

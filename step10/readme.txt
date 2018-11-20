@@ -3,13 +3,15 @@ minikube mount /data/mazepv:/mnt/mazepv
 
 
 kubectl apply -f redis-deployment.yaml
-kubect get pod
+kubect get pods
 kubectl get services
+
 kubectl create -f worker-deployment.yaml
 kubectl logs maze-worker-deployment-7d8ff78c44-fgx5z
 kubectl create -f controller-deployment.yaml
-kubectl get pods
 kubectl logs maze-controller-deployment-74cf9f85f8-g8r2j
+kubectl get pods
+
 kubectl get svc
 
 minikube service list
